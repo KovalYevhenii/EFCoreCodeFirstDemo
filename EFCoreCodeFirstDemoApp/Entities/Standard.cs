@@ -1,0 +1,8 @@
+﻿namespace EFCoreCodeFirstDemoApp.Entities;
+internal class Standard
+{
+        public int StandardId { get; set; }
+        public string? StandardName { get; set; }
+        public string? Description { get; set; }
+        public ICollection<Student>? Students { get; set; }
+}
