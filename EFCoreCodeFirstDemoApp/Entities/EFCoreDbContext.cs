@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Net.WebSockets;
-
-
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 namespace EFCoreCodeFirstDemoApp.Entities
 {
     internal class EFCoreDbContext : DbContext
@@ -12,8 +12,10 @@ namespace EFCoreCodeFirstDemoApp.Entities
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = $"Host=localhost;Port=5432;Database=TestEfCore;User Id=postgres;Password={Environment.GetEnvironmentVariable("sql_root")};";
-            optionsBuilder.UseNpgsql(connectionString);
+            var configBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var configSection = configBuilder.GetSection("ConnectionStrings");
+            var conString = configSection["SQLServerConnection"] ?? null;
+            optionsBuilder.UseNpgsql(conString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

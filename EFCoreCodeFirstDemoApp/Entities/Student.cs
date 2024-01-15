@@ -9,7 +9,7 @@ internal class Student
     public DateTime? DateOfBirth { get; set; }
 
     [Column(TypeName ="decimal(18, 4)")]
-    public decimal Hight { get; set; }
+    public decimal Height { get; set; }
 
     [Column(TypeName = "decimal(18, 4)")]
     public decimal Weight { get; set; }

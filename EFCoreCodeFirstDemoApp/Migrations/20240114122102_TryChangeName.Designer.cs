@@ -3,6 +3,7 @@ using System;
 using EFCoreCodeFirstDemoApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EFCoreCodeFirstDemoApp.Migrations
 {
     [DbContext(typeof(EFCoreDbContext))]
-    partial class EFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240114122102_TryChangeName")]
+    partial class TryChangeName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,8 @@ namespace EFCoreCodeFirstDemoApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18, 4)");
+                        .HasColumnType("decimal(18, 4)")
+                        .HasColumnName("Hight");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text");
